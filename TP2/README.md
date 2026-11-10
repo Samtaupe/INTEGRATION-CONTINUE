@@ -50,6 +50,18 @@ Temp de build : `Building 6.3s`
 Nombre d'étapes : `10`
 Taille de l'image : `261MB`
 
+la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)
+
 ### Package.json
 
-la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)
+> Retirer `mongodb` car elle n'est pas utiliser
+
+> Retirer `nodemon` et le remplacé par `node --watch` qui fait la même chose sans avoir à installer des dépendances suplémentaires
+
+> Retirer `main` car ça concerne uniquement les librairies et pas les applications
+
+> Retirer `NODE_ENV=development` car c'est inutile comme il n'y a plus de devDependencies à télécharger
+
+Temp de build : `Building 7.4s`
+Nombre d'étapes : `10`
+Taille de l'image : `260MB`
