@@ -22,4 +22,9 @@ Je suis parti sur la version `22-slim`
 Temps de build : `Building 58.6s`
 Nombre d'étapes : `12`
 
+> Retirer `COPY node_modules ./node_modules` car `npm install` le fait déjà
+
+Temps de build : `Building 41.7s`
+Nombre d'étapes : `11`
+
 la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)
