@@ -1,0 +1,32 @@
+services:
+  mongo:
+    image: mongo:8.0
+    container_name: tp1-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: tp1-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/
+      MONGO_DB: tp1
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+volumes:
+  mongo-data:
