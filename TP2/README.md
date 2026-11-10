@@ -65,3 +65,20 @@ la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneu
 Temp de build : `Building 7.4s`
 Nombre d'étapes : `10`
 Taille de l'image : `260MB`
+
+### Server.js
+
+Teste avec un fichier générer comme suit : `1..1000000 | ForEach-Object { "ligne $_ du fichier de test" } | Set-Content maybe-big-file.txt`
+Temp d'exécution méthode `/big` : `+ de 5 min`
+
+En plus le reste de l'exécution est bloqué car la méthode est synchrone il faut donc attendre la fin de l'exécution de cette dernière pour pouvoir faire autre chose.
+
+> Ajout condition MiddleWare
+
+On utilise le MiddleWare tant qu'on n'est pas en production.
+
+> Utilisation d'un `stream`
+
+On utilise un `stream` car c'est une exécution asynchrone et on gérer mieux l'erreur en évitant de renvoyé un code 200 et en le remplaçant par un code 404 si on ne trouve pas le fichier.
+
+Temp d'exécution méthode `/big` : `77 ms`
