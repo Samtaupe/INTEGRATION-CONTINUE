@@ -27,4 +27,9 @@ Nombre d'étapes : `12`
 Temps de build : `Building 41.7s`
 Nombre d'étapes : `11`
 
+> Retirer les paquets inutiles `build-essential`, `ca-certificates` et `locales`
+
+Temp de buil : `Building 8.6s`
+Nombre d'étapes : `11`
+
 la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)
