@@ -1,6 +1,6 @@
 # TP2 – Optimisation Docker
 
-Ce deuxième TP m'a servi à optimiser une application Docker.
+Ce deuxième TP m'a servi à optimiser une application Node.
 
 ## Contenu du dossier
 
@@ -81,4 +81,4 @@ On utilise le MiddleWare tant qu'on n'est pas en production.
 
 On utilise un `stream` car c'est une exécution asynchrone et on gérer mieux l'erreur en évitant de renvoyé un code 200 et en le remplaçant par un code 404 si on ne trouve pas le fichier.
 
-Temp d'exécution méthode `/big` : `77 ms`
+Temp d'exécution méthode `/big` : `15.02 s`
