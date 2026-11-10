@@ -29,7 +29,12 @@ Nombre d'étapes : `11`
 
 > Retirer les paquets inutiles `build-essential`, `ca-certificates` et `locales`
 
-Temp de buil : `Building 8.6s`
+Temp de build : `Building 8.6s`
+Nombre d'étapes : `11`
+
+> Favoriser un seul port les deux autres sont inutiles
+
+Temp de build : `Building 7.2s`
 Nombre d'étapes : `11`
 
 la source [ici](https://www.stephane-robert.info/docs/conteneurs/images-conteneurs/ecrire-dockerfile/)

@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . /app
 RUN npm install
 RUN apt-get update
-EXPOSE 3000 4000 5000
+EXPOSE 3000
 ENV NODE_ENV=development
 RUN npm run build
 USER root
