@@ -7,6 +7,7 @@ Ce premier TP Kubernetes m'a servi à lancer un cluster jetable sur mon poste, �
 - `README.md` : ce compte-rendu
 - `pod.yaml` : le manifest du Pod `hello` (nginx), avec les labels `run: hello` et `tier: front`
 - `deployment.yaml` : le Deployment `web` (3 réplicas de `traefik/whoami`)
+- `service.yaml` : le Service `web` devant les Pods `app=web`
 
 ## Premier Pod
 
@@ -45,3 +46,11 @@ Quand je supprime les 3 Pods, le ReplicaSet en recrée 3 nouveaux. En repassant 
 Le passage en `v1.10.2` crée un nouveau ReplicaSet, et l'ancien est gardé à 0 réplica. `k rollout undo` le remet à 3 et revient en `v1.10.1`.
 
 Après l'undo, le cluster tourne en `v1.10.1` alors que `deployment.yaml` indique `v1.10.2`.
+
+## Exposer avec un Service
+
+Le Service `web` reçoit une IP fixe. Ses Endpoints sont exactement les IP des 3 Pods `app=web`.
+
+Depuis un Pod busybox, 6 requêtes sur `http://web` sont réparties entre les 3 Pods. La répartition est aléatoire, pas chacun son tour.
+
+Avec le port-forward, http://localhost:8080 affiche toujours le même Hostname.
