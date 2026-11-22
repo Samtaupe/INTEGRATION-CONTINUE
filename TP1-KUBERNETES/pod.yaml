@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
-tier: front
 metadata:
   labels:
     run: hello
+    tier: front
   name: hello
 spec:
   containers:
