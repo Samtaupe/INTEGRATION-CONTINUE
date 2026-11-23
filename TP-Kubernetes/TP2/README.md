@@ -9,6 +9,7 @@ Ce deuxième TP Kubernetes m'a permis de sortir la configuration et les secrets 
 - `whoami.yaml` : la ConfigMap `api-config`, le Deployment `api` (2 réplicas de `traefik/whoami`) et son Service
 - `index.html` : la page servie par nginx, chargée dans la ConfigMap `site`
 - `site.yaml` : le Deployment `site` (nginx) qui monte la ConfigMap `site` en fichiers
+- `redis.yaml` : le Deployment `redis` protégé par mot de passe via le Secret `redis-auth`, et son Service
 
 ## Namespaces
 
@@ -29,3 +30,11 @@ Au passage, ma première tentative a échoué avec des erreurs `unknown field "s
 J'ai créé la ConfigMap `site` avec `k create configmap site --from-file=index.html`, puis je l'ai montée dans `/usr/share/nginx/html`.
 
 J'ai ensuite modifié la page directement dans le cluster avec `k edit configmap site`. Au bout d'environ une minute, la nouvelle version s'affiche bien en rafraîchissant, sans redémarrer le Pod.
+
+## Secrets
+
+J'ai créé le Secret `redis-auth`. Dans `k get secret redis-auth -o yaml`, la valeur n'est pas chiffrée.
+
+Le Deployment `redis` récupère le mot de passe dans la variable `REDIS_PASSWORD` avec `secretKeyRef`, puis la réutilise dans ses arguments avec la syntaxe `$(REDIS_PASSWORD)`. Sans mot de passe, `redis-cli ping` répond `NOAUTH Authentication required`. Avec `-a` et le bon mot de passe, il répond `PONG`.
+
+Enfin, `k exec deploy/redis -- env | grep REDIS` affiche bien le mot de passe en clair.
